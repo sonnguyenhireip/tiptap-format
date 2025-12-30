@@ -30,11 +30,47 @@ html {
   border-right: 1px solid #ccc;
   background: black;
   color: white;
+  position: relative;
 }
 
 .preview-container {
   background-color: white;
   color: black;
+}
+
+/* placeholder styling inside editor */
+.editor-content-wrapper {
+  position: relative;
+}
+.editor-content-wrapper .ProseMirror {
+  position: relative;
+  z-index: 1;
+  /* ensure content padding is explicit so placeholder can align to it */
+  padding: 10px;
+}
+/* make paragraphs start at the padding baseline so placeholder aligns */
+.editor-content-wrapper .ProseMirror p {
+  margin: 0;
+}
+
+.editor-placeholder {
+  position: absolute;
+  /* match ProseMirror padding to align text baseline */
+  top: 10px;
+  left: 10px;
+  color: #888;
+  pointer-events: none;
+  font-style: italic;
+  font-size: inherit;
+  line-height: 1.5;
+  z-index: 10;
+  white-space: pre-wrap;
+}
+
+/* preview empty state */
+.preview-content.empty {
+  color: #888;
+  font-style: italic;
 }
 
 .ProseMirror {

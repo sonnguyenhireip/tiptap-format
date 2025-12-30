@@ -6,13 +6,23 @@ interface Props {
 }
 
 const PreviewPane: React.FC<Props> = ({ html, json }) => {
+  const stripped = html
+    .replace(/\u200B/g, "")
+    .replace(/<[^>]+>/g, "")
+    .trim();
+  const isEmpty = stripped === "";
+
   return (
     <div className="preview-container">
       <h2>Preview</h2>
-      <div
-        className="preview-content"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      {isEmpty ? (
+        <div className="preview-content empty">(Trống)</div>
+      ) : (
+        <div
+          className="preview-content"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      )}
 
       <h3>HTML</h3>
       <pre className="preview-html">{html}</pre>
