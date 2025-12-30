@@ -11,7 +11,7 @@ const initialJson = {
   content: [
     {
       type: "paragraph",
-      content: [{ type: "text", text: "Hello World! 🌍️" }],
+      content: [],
     },
   ],
 };
