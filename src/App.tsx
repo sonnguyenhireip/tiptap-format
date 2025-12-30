@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { generateHTML } from "@tiptap/html";
 import "./App.css";
 import EditorPane from "./components/EditorPane";
 import PreviewPane from "./components/PreviewPane";
 
-const initialHtml = "<p>Hello World! 🌍️</p>";
 const initialJson = {
   type: "doc",
   content: [
@@ -15,6 +15,7 @@ const initialJson = {
     },
   ],
 };
+const initialHtml = generateHTML(initialJson, [StarterKit]);
 
 function App() {
   const [contentHtml, setContentHtml] = useState(initialHtml);
@@ -22,7 +23,7 @@ function App() {
 
   const editor = useEditor({
     extensions: [StarterKit],
-    content: initialHtml,
+    content: initialJson,
     onUpdate: ({ editor }) => {
       setContentHtml(editor.getHTML());
       setContentJson(editor.getJSON());
